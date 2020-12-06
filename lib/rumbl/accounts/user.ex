@@ -17,7 +17,6 @@ defmodule Rumbl.Accounts.User do
     user
     |> changeset(params)
     |> cast_assoc(:credential, with: &Credential.changeset/2, required: true)
-    |> unique_constraint(:username)
   end
 
   def changeset(user, attrs) do
@@ -25,6 +24,7 @@ defmodule Rumbl.Accounts.User do
     |> cast(attrs, [:name, :username])
     |> validate_required([:name, :username])
     |> validate_length(:username, min: 1, max: 20)
+    |> unique_constraint(:username)
   end
 
 end

@@ -136,4 +136,16 @@ defmodule Rumbl.Multimedia do
     Repo.preload(video_or_videos, :user)
   end
 
+  alias Rumbl.Multimedia.Category
+
+  def create_category(name) do
+    Repo.get_by(Category, name: name) || Repo.insert(%Category{name: name})
+  end
+
+  def list_alphabetical_categories do
+    Category
+    |> Category.alphabetical()
+    |> Repo.all()
+  end
+
 end
