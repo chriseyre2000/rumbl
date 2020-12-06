@@ -112,8 +112,6 @@ defmodule Rumbl.Multimedia do
     Ecto.Changeset.put_assoc(changeset, :user, user)
   end
 
-
-
   def list_user_videos(%Accounts.User{} = user) do
     Video
     |> user_videos_query(user)
@@ -133,7 +131,7 @@ defmodule Rumbl.Multimedia do
   end
 
   defp preload_user(video_or_videos) do
-    Repo.preload(video_or_videos, :user)
+    Repo.preload(video_or_videos, [:user, :category])
   end
 
   alias Rumbl.Multimedia.Category
