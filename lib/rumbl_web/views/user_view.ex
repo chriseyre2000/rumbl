@@ -8,4 +8,8 @@ defmodule RumblWeb.UserView do
       |> hd()
   end
 
+  def render("user.json", %{user: user}) do
+    %{id: user.id, username: user.username}
+  end
+
 end
